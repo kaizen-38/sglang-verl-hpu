@@ -24,20 +24,18 @@ it has only failed slowly.
 ## Layout
 
 ```
+sglang/               upstream SGLang (this repo's fork base)
+verl/                 upstream verl, vendored at 30119a25 (v0.8.0-176-g30119a25)
 gaudi/
-  verl_hpu_plugin/     verl external plugin: HPU platform + FSDP engine registration
+  verl_hpu_plugin/    verl external plugin: HPU platform + FSDP engine registration
   recipe/grpo_qwen3_4b_gaudi/
     run_grpo_sglang_hpu.sh   the recipe
     grpo_gaudi.sbatch        Slurm wrapper (4 HPUs, apptainer)
-  data/dapo_math/      the verified dataset
-verl/                  upstream verl checkout, pinned at 30119a25 (v0.9.0.dev), gitignored
+  data/dapo_math/     the verified dataset
 ```
 
-`verl/` is not vendored. Recreate it with:
-
-```bash
-git clone https://github.com/verl-project/verl.git verl && git -C verl checkout 30119a25
-```
+`verl/` is vendored (its `.git` was dropped), so local edits to it are tracked here.
+Its upstream is `https://github.com/verl-project/verl.git` at commit `30119a25`.
 
 ## Why the plugin, and not a verl fork
 
